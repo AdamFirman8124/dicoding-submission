@@ -46,7 +46,7 @@ const InputError = require('../exceptions/InputError');
                 status: 'fail',
                 message: `${response.message} Silakan gunakan foto lain.`
             })
-            newResponse.code(response.statusCode)
+            newResponse.code(500)
             return newResponse;
         }
  

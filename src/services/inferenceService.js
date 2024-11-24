@@ -16,7 +16,7 @@ async function predictClassification(model, image) {
         const confidenceScore = Math.max(...score) * 100;
  
         const classResult = tf.argMax(prediction, 1).dataSync()[0];
-        const label = classes[classResult];
+        let label = classes[classResult];
  
         let explanation, suggestion;
         if (confidenceScore > 50 ){

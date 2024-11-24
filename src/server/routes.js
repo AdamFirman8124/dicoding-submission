@@ -9,6 +9,7 @@ const routes = [
             payload: {
                 maxBytes: 1000000 // Atur batas payload di level rute
             },
+     
             validate: {
                 failAction: async (request, h, err) => {
                     if (err.output.statusCode === 413) {

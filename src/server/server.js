@@ -4,7 +4,7 @@ const Hapi = require('@hapi/hapi');
 const routes = require('../server/routes');
 const loadModel = require('../services/loadModel');
 const InputError = require('../exceptions/InputError');
-const Inert = require('@hapi/inert')
+const Inert = require('@hapi/inert');
 
 (async () => {
     const server = Hapi.server({

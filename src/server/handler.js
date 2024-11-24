@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 async function postPredictHandler(request, h) {
     try {
-        const { image } = request.payload;
+        const { image } = request.payload.file;
         const { model } = request.server.app;
 
         // Prediksi dengan memanggil fungsi 'predictClassification'

@@ -40,25 +40,18 @@ const InputError = require('../exceptions/InputError');
         return newResponse;
     }
 
-    // Handle other errors (like InputError or Boom)
-    if (response instanceof InputError) {
-            const newResponse = h.response({
-                status: 'fail',
-                message: `${response.message} Silakan gunakan foto lain.`
-            })
-            newResponse.code(500)
-            return newResponse;
-        }
- 
-        if (response.isBoom) {
-            const newResponse = h.response({
-                status: 'fail',
-                message: response.message
-            })
-            newResponse.code(response.statusCode)
-            return newResponse;
-        }
-
+     // Jika error terkait prediksi (misalnya InputError atau kesalahan umum)
+    if (response instanceof InputError || response.isBoom) {
+        const message = response instanceof InputError
+            ? `${response.message} Silakan gunakan foto lain.`
+            : 'Terjadi kesalahan dalam melakukan prediksi';
+        
+        const newResponse = h.response({
+            status: 'fail',
+            message: message
+        }).code(400);
+        return newResponse;
+    }
     return h.continue;
 });
 

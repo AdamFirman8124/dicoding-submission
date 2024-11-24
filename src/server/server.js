@@ -13,10 +13,7 @@ const InputError = require('../exceptions/InputError');
             cors: {
               origin: ['*'],
             },
-             payload:{parse: true,
-              multipart: {
-                     output: 'stream'
-              },
+             payload:{
               maxBytes: 1000 * 1000 * 1, // 1 Mb
                  },
             }

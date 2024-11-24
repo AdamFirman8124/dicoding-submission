@@ -16,7 +16,7 @@ const InputError = require('../exceptions/InputError');
             payload: {
                 maxBytes: 1000000, // Batas ukuran payload: 1MB
                 output: 'stream', // Output berupa stream (untuk file)
-                parse: true, // Parse payload secara otomatis
+                // parse: true, // Parse payload secara otomatis
                 allow: 'multipart/form-data' // Izinkan jenis multipart/form-data
             
             }

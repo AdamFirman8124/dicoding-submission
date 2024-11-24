@@ -28,6 +28,36 @@ const InputError = require('../exceptions/InputError');
  
     server.route(routes);
  
+    require('dotenv').config();
+ 
+const Hapi = require('@hapi/hapi');
+const routes = require('../server/routes');
+const loadModel = require('../services/loadModel');
+const InputError = require('../exceptions/InputError');
+ 
+(async () => {
+    const server = Hapi.server({
+        port: 8000,
+        host: '0.0.0.0',
+        routes: {
+            cors: {
+              origin: ['*'],
+            },
+            payload: {
+                maxBytes: 1000000, // Batas ukuran payload: 1MB
+                output: 'stream', // Output berupa stream (untuk file)
+                parse: true, // Parse payload secara otomatis
+                allow: 'multipart/form-data' // Izinkan jenis multipart/form-data
+            
+            }
+        },
+    });
+ 
+    const model = await loadModel();
+    server.app.model = model;
+ 
+    server.route(routes);
+ 
     server.ext('onPreResponse', function (request, h) {
         const response = request.response;
  
@@ -51,6 +81,10 @@ const InputError = require('../exceptions/InputError');
  
         return h.continue;
     });
+ 
+    await server.start();
+    console.log(`Server start at: ${server.info.uri}`);
+})();
  
     await server.start();
     console.log(`Server start at: ${server.info.uri}`);

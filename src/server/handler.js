@@ -4,24 +4,24 @@ const crypto = require('crypto');
 
 async function postPredictHandler(request, h) {
     try {
-        const { image } = request.payload;
-        const { model } = request.server.app;
+        // const { image } = request.payload;
+        // const { model } = request.server.app;
 
-        // Prediksi dengan memanggil fungsi 'predictClassification'
-        const { confidenceScore, label, explanation, suggestion } = await predictClassification(model, image);
+        // // Prediksi dengan memanggil fungsi 'predictClassification'
+        // const { confidenceScore, label, explanation, suggestion } = await predictClassification(model, image);
 
-        const id = crypto.randomUUID();
-        const createdAt = new Date().toISOString();
+        // const id = crypto.randomUUID();
+        // const createdAt = new Date().toISOString();
 
-        const data = {
-            "id": id,
-            "result": label,
-            "suggestion": suggestion,
-            "createdAt": createdAt
-        };
+        // const data = {
+        //     "id": id,
+        //     "result": label,
+        //     "suggestion": suggestion,
+        //     "createdAt": createdAt
+        // };
 
-        // Simpan data prediksi
-        await storeData(id, data);
+        // // Simpan data prediksi
+        // await storeData(id, data);
 
         const response = h.response({
             status: 'success',

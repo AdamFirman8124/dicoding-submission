@@ -16,7 +16,7 @@ const InputError = require('../exceptions/InputError');
             payload: {
                 maxBytes: 1000000, // Batas ukuran payload: 1MB
                 output: 'stream', // Output berupa stream (untuk file)
-                // parse: true, // Parse payload secara otomatis
+                parse: true, // Parse payload secara otomatis
                 allow: 'multipart/form-data' // Izinkan jenis multipart/form-data
             
             }
@@ -41,15 +41,23 @@ const InputError = require('../exceptions/InputError');
     }
 
     // Handle other errors (like InputError or Boom)
-    if (response instanceof InputError || response.isBoom) {
-        const message = 'Terjadi kesalahan dalam melakukan prediksi';
-        
-        const newResponse = h.response({
-            status: 'fail',
-            message: message
-        }).code(400);
-        return newResponse;
-    }
+    if (response instanceof InputError) {
+            const newResponse = h.response({
+                status: 'fail',
+                message: ${response.message} Silakan gunakan foto lain.
+            })
+            newResponse.code(response.statusCode)
+            return newResponse;
+        }
+ 
+        if (response.isBoom) {
+            const newResponse = h.response({
+                status: 'fail',
+                message: response.message
+            })
+            newResponse.code(response.statusCode)
+            return newResponse;
+        }
 
     return h.continue;
 });

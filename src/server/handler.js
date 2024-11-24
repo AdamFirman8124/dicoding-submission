@@ -8,18 +8,15 @@ async function postPredictHandler(request, h) {
     const { confidenceScore, label, explanation, suggestion } = await predictClassification(model, image);
     const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
-
     const data = {
         "id": id,
         "result": label,
-        "explanation": explanation,
         "suggestion": suggestion,
-        "confidenceScore": confidenceScore,
         "createdAt": createdAt
     }
     const response = h.response({
         status: 'success',
-        message: confidenceScore > 99 ? 'Model is predicted successfully.' : 'Model is predicted successfully but under threshold. Please use the correct picture',
+        message: 'Model is predicted successfully.',
         data
     })
     response.code(201);

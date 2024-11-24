@@ -13,10 +13,10 @@ const InputError = require('../exceptions/InputError');
             cors: {
               origin: ['*'],
             },
-             payload:{
-              maxBytes: 1000 * 1000 * 1, // 1 Mb
-                 },
-            }
+            //  payload:{
+            //   maxBytes: 1000 * 1000 * 1, // 1 Mb
+            //      },
+            // }
              });
  
     const model = await loadModel();

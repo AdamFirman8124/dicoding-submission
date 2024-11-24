@@ -4,7 +4,7 @@ const Hapi = require('@hapi/hapi');
 const routes = require('../server/routes');
 const loadModel = require('../services/loadModel');
 const InputError = require('../exceptions/InputError');
- 
+const Inert = require('@hapi/inert')
 (async () => {
     const server = Hapi.server({
         port: 8000,
@@ -20,7 +20,7 @@ const InputError = require('../exceptions/InputError');
     server.app.model = model;
  
     server.route(routes);
- 
+    await server.register(Inert)
    server.ext('onPreResponse', function (request, h) {
     const response = request.response;
     

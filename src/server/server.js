@@ -42,6 +42,7 @@ const InputError = require('../exceptions/InputError');
 
      // Jika error terkait prediksi (misalnya InputError atau kesalahan umum)
     if (response instanceof InputError || response.isBoom) {
+        console.log(response)
         const message = response instanceof InputError
             ? `${response.message} Silakan gunakan foto lain.`
             : 'Terjadi kesalahan dalam melakukan prediksi';

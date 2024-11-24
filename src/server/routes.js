@@ -10,6 +10,12 @@ const routes = [
   {
     path: '/predict',
     method: 'POST',
+    config:{
+      payload: {
+                maxBytes: 1000000,
+      }
+     
+    },
     options: {
       payload: {
         allow: 'multipart/form-data',

@@ -3,6 +3,7 @@ const storeData = require('../services/storeData');
 const crypto = require('crypto');
 
 async function postPredictHandler(request, h) {
+    console.log(request)
     try {
         const { image } = request.payload;
         const { model } = request.server.app;

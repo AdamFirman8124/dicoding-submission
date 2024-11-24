@@ -39,7 +39,7 @@ const Inert = require('@hapi/inert');
             console.log(response)
             const message = response instanceof InputError
                 ? `${response.message} Silakan gunakan foto lain.`
-                : 'Terjadi kesalahan dalam melakukan prediksi 1';
+                : 'Terjadi kesalahan dalam melakukan prediksi';
 
             const newResponse = h.response({
                 status: 'fail',

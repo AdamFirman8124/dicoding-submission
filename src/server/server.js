@@ -13,12 +13,13 @@ const InputError = require('../exceptions/InputError');
             cors: {
               origin: ['*'],
             },
-             parse: true,
+             payload:{parse: true,
               multipart: {
                      output: 'stream'
               },
               maxBytes: 1000 * 1000 * 1, // 1 Mb
                  },
+            }
              });
  
     const model = await loadModel();

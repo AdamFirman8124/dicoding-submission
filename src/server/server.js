@@ -42,9 +42,7 @@ const InputError = require('../exceptions/InputError');
 
     // Handle other errors (like InputError or Boom)
     if (response instanceof InputError || response.isBoom) {
-        const message = response instanceof InputError
-            ? `${response.message} Silakan gunakan foto lain.`
-            : 'Terjadi kesalahan dalam melakukan prediksi';
+        const message = 'Terjadi kesalahan dalam melakukan prediksi';
         
         const newResponse = h.response({
             status: 'fail',

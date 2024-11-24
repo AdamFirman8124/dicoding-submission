@@ -6,11 +6,21 @@ const routes = [
     method: 'POST',
     handler: postPredictHandler,
     options: {
-      payload: {
-        allow: 'multipart/form-data',
-        multipart: true
-      }
-    }
+            payload: {
+                maxBytes: 1000000 // Atur batas payload di level rute
+            },
+            validate: {
+                failAction: async (request, h, err) => {
+                    if (err.output.statusCode === 413) {
+                        return h.response({
+                            status: 'fail',
+                            message: 'Payload content length greater than maximum allowed: 1000000'
+                        }).code(413).takeover();
+                    }
+                    throw err;
+                }
+            }
+        }
   }
 ]
  

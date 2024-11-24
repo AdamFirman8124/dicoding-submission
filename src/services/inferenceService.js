@@ -19,26 +19,35 @@ async function predictClassification(model, image) {
         const label = classes[classResult];
  
         let explanation, suggestion;
+        if (confidenceScore > 50 ){
+            label='Cancer';
+            suggestion='Segera periksa ke dokter!';
 
-        if(label === 'Melanocytic nevus') {
-            explanation = "Melanocytic nevus adalah kondisi di mana permukaan kulit memiliki bercak warna yang berasal dari sel-sel melanosit, yakni pembentukan warna kulit dan rambut."
-            suggestion = "Segera konsultasi dengan dokter terdekat jika ukuran semakin membesar dengan cepat, mudah luka atau berdarah."
-        }
- 
-        else if(label === 'Squamous cell carcinoma') {
-            explanation = "Squamous cell carcinoma adalah jenis kanker kulit yang umum dijumpai. Penyakit ini sering tumbuh pada bagian-bagian tubuh yang sering terkena sinar UV."
-            suggestion = "Segera konsultasi dengan dokter terdekat untuk meminimalisasi penyebaran kanker."
-        }
- 
-        else if(label === 'Vascular lesion') {
-            explanation = "Vascular lesion adalah penyakit yang dikategorikan sebagai kanker atau tumor di mana penyakit ini sering muncul pada bagian kepala dan leher."
-            suggestion = "Segera konsultasi dengan dokter terdekat untuk mengetahui detail terkait tingkat bahaya penyakit."
-        
         }
      else{
-            explanation = "Tidak Ada penyakit Cancer"
-            suggestion = "Tidak Ada penyakit Cancer"
+            label='Non Cancer';
+            suggestion="Penyakit kanker tidak terdeteksi.";
      }
+       explanation="";
+        // if(label === 'Melanocytic nevus') {
+        //     explanation = "Melanocytic nevus adalah kondisi di mana permukaan kulit memiliki bercak warna yang berasal dari sel-sel melanosit, yakni pembentukan warna kulit dan rambut."
+        //     suggestion = "Segera konsultasi dengan dokter terdekat jika ukuran semakin membesar dengan cepat, mudah luka atau berdarah."
+        // }
+ 
+        // else if(label === 'Squamous cell carcinoma') {
+        //     explanation = "Squamous cell carcinoma adalah jenis kanker kulit yang umum dijumpai. Penyakit ini sering tumbuh pada bagian-bagian tubuh yang sering terkena sinar UV."
+        //     suggestion = "Segera konsultasi dengan dokter terdekat untuk meminimalisasi penyebaran kanker."
+        // }
+ 
+        // else if(label === 'Vascular lesion') {
+        //     explanation = "Vascular lesion adalah penyakit yang dikategorikan sebagai kanker atau tumor di mana penyakit ini sering muncul pada bagian kepala dan leher."
+        //     suggestion = "Segera konsultasi dengan dokter terdekat untuk mengetahui detail terkait tingkat bahaya penyakit."
+        
+        // }
+     // else{
+     //        explanation = "Tidak Ada penyakit Cancer"
+     //        suggestion = "Tidak Ada penyakit Cancer"
+     // }
  
         return { confidenceScore, label, explanation, suggestion };
     } catch (error) {

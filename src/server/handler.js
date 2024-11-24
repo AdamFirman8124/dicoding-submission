@@ -36,7 +36,8 @@ async function postPredictHandler(request, h) {
         // Mengembalikan respons error jika ada kesalahan
         const response = h.response({
             status: 'fail',
-            message: 'Terjadi kesalahan dalam melakukan prediksi'
+            message: 'Terjadi kesalahan dalam melakukan prediksi',
+            error:error,
         });
         response.code(400); // Status code 400 untuk Bad Request
         return response;

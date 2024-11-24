@@ -8,6 +8,7 @@ async function storeData(id, data) {
     console.log('Data stored successfully');
   } catch (error) {
     console.error('Error storing data:', error);
+    throw error;
   }
 }
 module.exports = storeData;

@@ -1,5 +1,5 @@
 // getPredictionHistoryHandler.js
-const getPredictionHistories = require('./services/getData');
+const getPredictionHistories = require('../services/getData');
 
 const getPredictionHistoryHandler = async (request, h) => {
     // Call the function to get prediction histories

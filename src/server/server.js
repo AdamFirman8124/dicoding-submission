@@ -41,19 +41,15 @@ const InputError = require('../exceptions/InputError');
     }
 
     // Handle other errors (like InputError or Boom)
-    if (response instanceof InputError) {
+    if (response instanceof InputError || response.isBoom) {
+        const message = response instanceof InputError
+            ? `${response.message} Silakan gunakan foto lain.`
+            : 'Terjadi kesalahan dalam melakukan prediksi';
+        
         const newResponse = h.response({
             status: 'fail',
-            message: `${response.message} Silakan gunakan foto lain.`
-        }).code(response.statusCode);
-        return newResponse;
-    }
-
-    if (response.isBoom) {
-        const newResponse = h.response({
-            status: 'fail',
-            message: response.message
-        }).code(response.statusCode);
+            message: message
+        }).code(400);
         return newResponse;
     }
 

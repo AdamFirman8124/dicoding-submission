@@ -16,11 +16,11 @@ const Inert = require('@hapi/inert')
             }
              });
  
+             await server.register(Inert)
     const model = await loadModel();
     server.app.model = model;
  
     server.route(routes);
-    await server.register(Inert)
    server.ext('onPreResponse', function (request, h) {
     const response = request.response;
     

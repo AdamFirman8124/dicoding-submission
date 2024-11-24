@@ -12,6 +12,7 @@ async function predictClassification(model, image) {
         const classes = ['Melanocytic nevus', 'Squamous cell carcinoma', 'Vascular lesion'];
  
         const prediction = model.predict(tensor);
+        console.log(prediction)
         const score = await prediction.data();
         const confidenceScore = Math.max(...score) * 100;
  

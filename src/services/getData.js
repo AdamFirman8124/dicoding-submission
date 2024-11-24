@@ -3,6 +3,7 @@ const {Firestore} = require('@google-cloud/firestore')
 // Function to fetch prediction history from Firestore
 const getPredictionHistories = async () => {
     try {
+        const firestore= new Firestore();
         // Get a reference to the 'predictions' collection
         const predictionsRef = firestore.collection('predictions');
         

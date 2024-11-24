@@ -19,7 +19,7 @@ async function predictClassification(model, image) {
         const label = classes[classResult];
  
         let explanation, suggestion;
- 
+
         if(label === 'Melanocytic nevus') {
             explanation = "Melanocytic nevus adalah kondisi di mana permukaan kulit memiliki bercak warna yang berasal dari sel-sel melanosit, yakni pembentukan warna kulit dan rambut."
             suggestion = "Segera konsultasi dengan dokter terdekat jika ukuran semakin membesar dengan cepat, mudah luka atau berdarah."

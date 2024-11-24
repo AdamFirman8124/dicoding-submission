@@ -16,7 +16,7 @@ const InputError = require('../exceptions/InputError');
             //  payload:{
             //   maxBytes: 1000 * 1000 * 1, // 1 Mb
             //      },
-            // }
+            }
              });
  
     const model = await loadModel();

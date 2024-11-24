@@ -21,7 +21,7 @@ async function postPredictHandler(request, h) {
         };
 
         // Simpan data prediksi
-        await storeData(id, data);
+        // await storeData(id, data);
 
         const response = h.response({
             status: 'success',

@@ -5,6 +5,18 @@ const crypto = require('crypto');
 async function postPredictHandler(request, h) {
     try {
         const { image } = request.payload;
+        // Check if the image exists in the payload
+        if (!image) {
+            throw new Error('No image file provided.');
+        }
+
+        // Check the content type of the uploaded file (image/jpeg or image/png)
+        const contentType = image.hapi.headers['content-type'];
+        const allowedTypes = ['image/jpeg', 'image/png'];
+
+        if (!allowedTypes.includes(contentType)) {
+            throw new Error('Unsupported media type. Only JPEG and PNG images are allowed.');
+        }
         const { model } = request.server.app;
 
         // Prediksi dengan memanggil fungsi 'predictClassification'
@@ -37,7 +49,7 @@ async function postPredictHandler(request, h) {
         const response = h.response({
             status: 'fail',
             message: 'Terjadi kesalahan dalam melakukan prediksi',
-            error:error,
+            error: error,
         });
         response.code(400); // Status code 400 untuk Bad Request
         return response;

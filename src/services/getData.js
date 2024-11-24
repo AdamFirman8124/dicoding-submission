@@ -26,7 +26,7 @@ const getPredictionHistories = async () => {
                 history: {
                     id: doc.id,
                     result: data.result,
-                    createdAt: data.createdAt.toDate().toISOString(), // Ensure proper date formatting
+                    createdAt: data.createdAt,
                     suggestion: data.suggestion,
                 }
             };

@@ -25,7 +25,7 @@ async function predictClassification(model, image) {
 
         }
      else{
-            label='Non Cancer';
+            label='Non-cancer';
             suggestion="Penyakit kanker tidak terdeteksi.";
      }
        explanation="";

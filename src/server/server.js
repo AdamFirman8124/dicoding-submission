@@ -29,7 +29,7 @@ const Inert = require('@hapi/inert');
         if (response.isBoom && response.output.statusCode === 413) {
             const newResponse = h.response({
                 status: 'fail',
-                message: 'Payload content length is greater than maximum allowed (1MB).'
+                message: 'Payload content length greater than maximum allowed: 1000000'
             }).code(413);
             return newResponse;
         }
